@@ -6,7 +6,7 @@
     
     // Configure your Slack webhook URL here
     // Get it from: https://api.slack.com/messaging/webhooks
-    const SLACK_WEBHOOK_URL = 'https://hooks.slack.com/services/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';
+    const SLACK_WEBHOOK_URL = '';
     
     const analyticsKey = 'vivek_portfolio_2026';
     
@@ -140,15 +140,30 @@
             ]
         };
         
-        // Send to Slack
+        const payload = JSON.stringify(message);
+
+        // Browser fetch calls to Slack webhooks are often blocked by CORS.
+        // sendBeacon avoids the preflight and is better suited for visitor notifications.
+        if (navigator.sendBeacon) {
+            try {
+                const sent = navigator.sendBeacon(
+                    SLACK_WEBHOOK_URL,
+                    new Blob([payload], { type: 'application/json' })
+                );
+
+                if (sent) {
+                    return;
+                }
+            } catch (error) {
+                console.log('Slack beacon failed:', error);
+            }
+        }
+
         fetch(SLACK_WEBHOOK_URL, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(message)
-        })
-        .catch(error => console.log('Slack notification failed:', error));
+            mode: 'no-cors',
+            body: payload
+        }).catch(error => console.log('Slack notification failed:', error));
     }
     
     // Helper function to truncate long strings
