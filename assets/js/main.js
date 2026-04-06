@@ -33,7 +33,7 @@
 
 /* ----- TYPING EFFECT ----- */
    var typingEffect = new Typed(".typedText",{
-      strings : ["Designer","Problem Solver","Developer"],
+      strings : ["Full-Stack Developer","Problem Solver","Tech Innovator"],
       loop : true,
       typeSpeed : 100, 
       backSpeed : 80,
@@ -60,6 +60,7 @@
 
   /* -- PROJECT BOX -- */
   sr.reveal('.project-box',{interval: 200})
+  sr.reveal('.project-card',{interval: 100})
 
   /* -- HEADINGS -- */
   sr.reveal('.top-header',{})
@@ -76,6 +77,7 @@
   
   srLeft.reveal('.about-info',{delay: 100})
   srLeft.reveal('.contact-info',{delay: 100})
+  srLeft.reveal('.experience-item',{interval: 100})
 
   /* -- ABOUT SKILLS & FORM BOX -- */
   const srRight = ScrollReveal({
