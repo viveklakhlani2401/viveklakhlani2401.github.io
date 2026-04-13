@@ -6,7 +6,7 @@
     
     // Configure your Slack webhook URL here
     // Get it from: https://api.slack.com/messaging/webhooks
-    const SLACK_WEBHOOK_URL = '';
+    const SLACK_WEBHOOK_URL = 'https://hooks.slack.com/services/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';
     
     const analyticsKey = 'vivek_portfolio_2026';
     
